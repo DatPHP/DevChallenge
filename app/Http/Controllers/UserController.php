@@ -79,12 +79,14 @@ class UserController extends Controller
               $users->save();
 
              // dd($users);
+
+            // return response()->json($users);
           
             return redirect('user/list')
                 ->with('message', 'Đăng ký thành công.');
           }
       }
-      
+
       public function getlist(){
        $users =  User::paginate(10);
 
@@ -102,6 +104,8 @@ class UserController extends Controller
 
         
        // dd($users);
+
+       //return response()->json($users);
 
        return view('user.users-list', compact('users'));
 
@@ -121,6 +125,8 @@ class UserController extends Controller
         ->leftJoin('customers', 'users.id', '=', 'customers.user_id')
         ->get();
         $user = $users[0];
+
+        //return response()->json($user);
 
         return view('user.create', ['user' => $user, 'id'=>$id]);
       }
